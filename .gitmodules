@@ -1,0 +1,3 @@
+[submodule "libraries/BH1750"]
+	path = libraries/BH1750
+	url = https://github.com/claws/BH1750.git
