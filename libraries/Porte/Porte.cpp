@@ -32,23 +32,37 @@ void Porte::setTours(unsigned int tours)
 
 void Porte::fermer()
 {
-  if(!tourne() && !fermee())
+  if(!tourne())
   {
-	delay(10);
-	activerCapteurs();
-    _cw = true;
-    _start();
+    activerCapteurs();
+    delay(20);
+    if(!fermee())
+    {
+      _cw = true;
+      _start();
+    }
+    else
+    {
+      desactiverCapteurs();
+    }
   }
 }
 
 void Porte::ouvrir()
 {
-  if(!tourne() && !ouverte())
+  if(!tourne())
   {
-	activerCapteurs();
-	delay(20);
-    _cw = false;
-    _start();
+    activerCapteurs();
+    delay(20);
+    if(!ouverte())
+    {
+      _cw = false;
+      _start();
+    }
+    else
+    {
+      desactiverCapteurs();
+    }
   }
 }
 
@@ -69,7 +83,6 @@ void Porte::desactiverCapteurs()
 {
   PORTB &= B10111111;
 }
-
 
 boolean Porte::fermee()
 {
@@ -96,7 +109,7 @@ void Porte::tourner()
 {   
   if(_tour >= _tours || _cw && fermee() || !_cw && ouverte())
   {
-	arreter();
+    arreter();
     return;
   }
 
