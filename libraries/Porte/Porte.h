@@ -33,7 +33,7 @@ class Porte
     unsigned int _nbTours;
     unsigned int _step;
     unsigned int _tour;
-    boolean _running;
+    volatile boolean _running;
     unsigned int _period;
     byte _shift(byte n);
     void _start();
